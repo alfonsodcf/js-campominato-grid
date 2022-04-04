@@ -1,3 +1,11 @@
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max -min) + min);
+}
+
+
+
 function stampareGriglia() {
     const colNumber = 64;
     const colperRow = 8;
@@ -13,10 +21,16 @@ function stampareGriglia() {
 
 function creaColonne(numerocolonne){
     let cols = '';
-    for(let i = 1; i <= numerocolonne; i++){
-        cols += `
-            <div class="col">${i}</div>
-        `;
+    let numeriusati = [];
+    while(numeriusati.length < 64){
+        let numeroCella = getRandomInt(0, 64);
+        if(!numeriusati.includes(numeroCella)){
+            numeriusati.push(numeroCella);
+            cols += `
+            <div class="col">${numeroCella}</div>
+            `;
+        }
+       
     }
     return cols;
 }
