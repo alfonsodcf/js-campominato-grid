@@ -1,0 +1,8 @@
+body{
+    color: red;
+}
+#app .col {
+    border: 1px solid black;
+    width: calc(100% / 8);
+    height: 50px;
+} 
