@@ -8,7 +8,7 @@
 
 function setLevel(){
     const level = document.getElementById("level").value;
-    console.log(level);
+    console.log('Difficoltà:', level);
 
     let numCol;
     switch (level) {
@@ -29,12 +29,35 @@ function setLevel(){
 generaGriglia(numCol); 
 }
 
-function generaGriglia(numCol){S
-    console.log(numCol)
-
-
+function generaGriglia(numCol){
+    console.log('numero celle:', numCol);
+    let numRige = Math.sqrt(numCol);
+    console.log('numero righe:', numRige);
+    
+    const app = document.getElementById("app");
+    let row = document.createElement("div");
+    row.setAttribute("class", "cs-row");
+    for(let i = 1; 1 <= numCol; i++){ //il ciclo serve a far si che la function generaCol si esegua tante volte quante il "numCol" 
+        const col = generaCol(i, numRige); //nella parentesi scriviamo le cose da pasare alla function situata al difuori di quesat function
+        row.append(col); //senza il return questa riga non funziona
+    }
+    app.append(row);
 }
 
+function generaCol(numCol, numRige){
+    let col = document.createElement("div");
+    col.setAttribute("class", "cs-col");
+    col.style.width = `calc(100% / ${numRige})`;
+    col.style.height = `calc(100% / ${numRige})`;
+    col.classList.add("pointer");
+    col.innerHTML = `<span>${numCol}</span>`;
+    col.addEventListener('click', coloraCella);
+    return col;
+}
+
+function coloraCella(){
+    console.log(this);
+}
 
 document.getElementById("play").addEventListener("click", setLevel);
 
@@ -70,5 +93,5 @@ document.getElementById("play").addEventListener("click", setLevel);
        
 //     }
 //     return cols;
-// }
+// };
 // document.getElementById('generate').addEventListener('click', stampareGriglia);
