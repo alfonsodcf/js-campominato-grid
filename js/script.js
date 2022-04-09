@@ -25,19 +25,21 @@ function setLevel(){
 
            
     }
-//console.log(numCol);
-generaGriglia(numCol); 
+    let numRige = Math.sqrt(numCol)
+    console.log("celle per lato: ", numRige )
+generaGriglia(numCol, numRige); 
 }
 
-function generaGriglia(numCol){
-    console.log('numero celle:', numCol);
-    let numRige = Math.sqrt(numCol);
-    console.log('numero righe:', numRige);
+
     
+
+function generaGriglia(numCol, numRige){
+    console.log('numero celle:', numCol);
     const app = document.getElementById("app");
+    app.innerHTML = '';
     let row = document.createElement("div");
     row.setAttribute("class", "cs-row");
-    for(let i = 1; 1 <= numCol; i++){ //il ciclo serve a far si che la function generaCol si esegua tante volte quante il "numCol" 
+    for(let i = 1; i <= numCol; i++){ //il ciclo serve a far si che la function generaCol si esegua tante volte quante il "numCol" 
         const col = generaCol(i, numRige); //nella parentesi scriviamo le cose da pasare alla function situata al difuori di quesat function
         row.append(col); //senza il return questa riga non funziona
     }
@@ -57,6 +59,9 @@ function generaCol(numCol, numRige){
 
 function coloraCella(){
     console.log(this);
+    this.style.backgroundColor = '#6495ed';
+    this.classList.remove("pointer")
+    this.removeEventListener("click", coloraCella);
 }
 
 document.getElementById("play").addEventListener("click", setLevel);
